@@ -19,11 +19,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_TABLENAME = "foodDetailsTable";
 
     private static final String KEY_ID = "id";
-    private static final String KEY_NAME =  "name";
+    private static final String KEY_NAME =  "foodName";
 
 
     public DatabaseHelper(@Nullable Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME+".db", null, DATABASE_VERSION);
     }
 
 
@@ -33,7 +33,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "("+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT " + ")";
         db.execSQL(createTableQuery);
 
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
     }
 
     @Override
