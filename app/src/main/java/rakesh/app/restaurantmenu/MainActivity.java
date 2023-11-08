@@ -23,12 +23,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        databaseHelper.addContant("Rajesh");
-        databaseHelper.addContant("Ramu");
+        //databaseHelper.addContant("Rajesh");
+        //databaseHelper.addContant("Ramu");
         // Query data
         //Cursor cursor = db.query("your_table_name", null, null, null, null, null, null);
 
         listOfFood = new ArrayList<>();
+
+        FoodModel foodModel = new FoodModel();
+        foodModel.id = 1;
+        foodModel.foodName = "Roja sharma";
+
+        databaseHelper.UpdateFoodDetails(foodModel);
         listOfFood = databaseHelper.GetFoodDetails();
 
 

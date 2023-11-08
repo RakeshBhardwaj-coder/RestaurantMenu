@@ -57,6 +57,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+    public void UpdateFoodDetails(FoodModel foodModel){
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(KEY_NAME, foodModel.foodName);
+        sqLiteDatabase.update(DATABASE_TABLENAME,contentValues,KEY_ID+" = "+ foodModel.id,null);
+
+
+    }
+
     public List<FoodModel> GetFoodDetails(){
 
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -75,27 +85,5 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return listOfFoods;
     }
-//
-//    public List<FoodModel> getAllFoodDetails() {
-//        List<FoodModel> foodList = new ArrayList<>();
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        Cursor cursor = db.query(DATABASE_TABLENAME,null,null,null,null,null,null);
-//        if(cursor.moveToNext()){
-//            do{
-//                long id = cursor.getLong(cursor.getColumnIndex(KEY_NAME));
-//
-//                String foodName = cursor.getString(cursor.getColumnIndex(KEY_ID));
-//                //long id2 = Long.parseLong(cursor.getColumnName(0));
-//                //String foodName2 = cursor.getColumnName(1);
-//
-//                FoodModel foodModel = new FoodModel(id,foodName);
-//                foodList.add(foodModel);
-//
-//
-//            }while (cursor.moveToNext());
-//        }
-//        cursor.close();
-//        db.close();
-//        return foodList;
-//    }
+
 }
