@@ -30,11 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         listOfFood = new ArrayList<>();
 
-        FoodModel foodModel = new FoodModel();
-        foodModel.id = 1;
-        foodModel.foodName = "Roja sharma";
+        // for data Update
+//        FoodModel foodModel = new FoodModel();
+//        foodModel.id = 1;
+//        foodModel.foodName = "Roja sharma";
+//
+//        databaseHelper.UpdateFoodDetails(foodModel);
 
-        databaseHelper.UpdateFoodDetails(foodModel);
+        // data deletion
+        databaseHelper.DeleteFoodDetails(8);
         listOfFood = databaseHelper.GetFoodDetails();
 
 

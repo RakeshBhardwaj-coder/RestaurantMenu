@@ -58,11 +58,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void UpdateFoodDetails(FoodModel foodModel){
-        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(KEY_NAME, foodModel.foodName);
         sqLiteDatabase.update(DATABASE_TABLENAME,contentValues,KEY_ID+" = "+ foodModel.id,null);
+
+
+    }
+    public void DeleteFoodDetails(int id){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.delete(DATABASE_TABLENAME,KEY_ID + " = ? ", new String[]{String.valueOf(id)});
+
 
 
     }
