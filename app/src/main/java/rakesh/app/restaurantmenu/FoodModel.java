@@ -3,10 +3,12 @@ package rakesh.app.restaurantmenu;
 public class FoodModel {
 
     long id;
-    private String foodName;
+     String foodName;
     private String foodReceivingTime;
     private double foodPrice;
 
+    public FoodModel() {
+    }
 
     public FoodModel(long id, String foodName) {
         this.id = id;

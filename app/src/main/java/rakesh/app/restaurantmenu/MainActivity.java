@@ -29,7 +29,8 @@ public class MainActivity extends AppCompatActivity {
         //Cursor cursor = db.query("your_table_name", null, null, null, null, null, null);
 
         listOfFood = new ArrayList<>();
-     //   listOfFood = databaseHelper.getAllFoodDetails();
+        listOfFood = databaseHelper.GetFoodDetails();
+
 
         // Close the database when you're done with it.
 

@@ -54,6 +54,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.insert(DATABASE_TABLENAME, null, values);
 
+
+    }
+
+    public List<FoodModel> GetFoodDetails(){
+
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from "+ DATABASE_TABLENAME,null);
+
+        ArrayList<FoodModel> listOfFoods = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            FoodModel foodModel = new FoodModel();
+
+            foodModel.id = cursor.getInt(0);
+            foodModel.foodName = cursor.getString(1);
+
+            listOfFoods.add(foodModel);
+        }
+        return listOfFoods;
     }
 //
 //    public List<FoodModel> getAllFoodDetails() {
