@@ -31,7 +31,8 @@ public class FoodModelAdapter extends RecyclerView.Adapter<FoodModelAdapter.View
     public void onBindViewHolder(@NonNull FoodModelAdapter.ViewHolder holder, int position) {
         FoodModel foodModel = listOfFood.get(position);
         holder.foodNameTxt.setText(""+foodModel.getFoodName());
-        holder.timeToReceiveTxt.setText(""+foodModel.getId());
+        holder.timeToReceiveTxt.setText(""+foodModel.getFoodTiming());
+
     }
 
     @Override

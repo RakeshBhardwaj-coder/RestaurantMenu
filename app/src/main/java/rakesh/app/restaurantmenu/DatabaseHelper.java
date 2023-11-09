@@ -15,12 +15,15 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "FoodDetailsData";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_TABLENAME = "foodDetailsTable";
 
     private static final String KEY_ID = "id";
     private static final String KEY_NAME =  "foodName";
+    private static final String KEY_TIMING =  "foodTiming";
 
+    private static final String KEY_RATING =  "foodRating";
+    private static final String KEY_PRICE =  "foodPrice";
 
     public DatabaseHelper(@Nullable Context context) {
         super(context, DATABASE_NAME+".db", null, DATABASE_VERSION);
@@ -30,9 +33,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String createTableQuery = "CREATE TABLE " + DATABASE_TABLENAME +
-                "("+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT " + ")";
+                "("+ KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_NAME + " TEXT ," +KEY_TIMING+" INTEGER," +KEY_RATING+ "DOUBLE,"+KEY_PRICE+"DOUBLE"+ ")";
+        String createTable = "CREATE TABLE " + DATABASE_TABLENAME + " (" +
+                KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_NAME + " TEXT, " +
+                KEY_TIMING + " INTEGER, " +
+                KEY_RATING + " DOUBLE, " +
+                KEY_PRICE + " DOUBLE" + ")";
         db.execSQL(createTableQuery);
-
     }
 
     @Override
@@ -42,18 +50,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public void addContant(String foodName){
-
+    public void AddFoodDetails(String foodName, int foodTime,double foodRating, double foodPrice){
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         // Insert data
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, foodName);
+        values.put(KEY_TIMING,foodTime);
+        values.put(KEY_RATING,foodRating);
+        values.put(KEY_PRICE,foodPrice);
 
 
         db.insert(DATABASE_TABLENAME, null, values);
-
 
     }
 
@@ -64,14 +73,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(KEY_NAME, foodModel.foodName);
         sqLiteDatabase.update(DATABASE_TABLENAME,contentValues,KEY_ID+" = "+ foodModel.id,null);
 
-
     }
     public void DeleteFoodDetails(int id){
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         sqLiteDatabase.delete(DATABASE_TABLENAME,KEY_ID + " = ? ", new String[]{String.valueOf(id)});
-
-
-
     }
 
     public List<FoodModel> GetFoodDetails(){
@@ -87,7 +92,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
             foodModel.id = cursor.getInt(0);
             foodModel.foodName = cursor.getString(1);
-
             listOfFoods.add(foodModel);
         }
         return listOfFoods;

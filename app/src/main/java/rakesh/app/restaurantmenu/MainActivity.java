@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         DatabaseHelper databaseHelper = new DatabaseHelper(this);
-        //databaseHelper.addContant("Rajesh");
-        //databaseHelper.addContant("Ramu");
+        // for create data
+        databaseHelper.AddFoodDetails("Pear & Orange",20,4.8,25.00);
+        databaseHelper.AddFoodDetails("Meat & Mashrooms",20,4.8,25.00);
         // Query data
-        //Cursor cursor = db.query("your_table_name", null, null, null, null, null, null);
 
         listOfFood = new ArrayList<>();
 
@@ -38,8 +38,9 @@ public class MainActivity extends AppCompatActivity {
 //        databaseHelper.UpdateFoodDetails(foodModel);
 
         // data deletion
-        databaseHelper.DeleteFoodDetails(8);
-        listOfFood = databaseHelper.GetFoodDetails();
+//        databaseHelper.DeleteFoodDetails(8);
+
+         listOfFood = databaseHelper.GetFoodDetails();
 
 
         // Close the database when you're done with it.
